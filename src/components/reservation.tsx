@@ -1,5 +1,5 @@
 import React from "react";
-import FilterComponent from "./filter";
+import FlightIssueForm from "./FlightIssues";
 
 const Reservation: React.FC = () => {
   return (
@@ -10,7 +10,7 @@ const Reservation: React.FC = () => {
       <h1 className="text-xl md:text-5xl font-bold mt-4">
         Nous Gérons <span className="text-primary">les Imprévus</span> !
       </h1>
-      <FilterComponent />
+      <FlightIssueForm />
     </header>
   );
 };

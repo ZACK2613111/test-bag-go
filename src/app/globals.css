@@ -32,3 +32,45 @@ body {
   background: var(--background);
   font-family: 'Roboto', sans-serif; 
 }
+
+/* * {
+  cursor: none;
+} */
+/* Define custom cursor styles *//* Define custom cursor styles */
+/* Basic outer cursor (larger white circle) */
+.cursor-outer {
+  position: absolute;
+  width: 24px;   /* Default size for outer cursor */
+  height: 24px;  /* Default size */
+  border-radius: 50%; /* Round shape */
+  background-color: white; /* White color */
+  pointer-events: none;  /* Ensure it doesn't interfere with clicks */
+  transform: translate(-50%, -50%); /* Center it on mouse pointer */
+  transition: all 0.15s ease; /* Smooth transition */
+  z-index: 9999; /* Ensure it's on top of everything else */
+}
+
+/* Inner cursor (smaller white circle) */
+.cursor-inner {
+  position: absolute;
+  width: 10px;   /* Default size for inner cursor */
+  height: 10px;  /* Default size */
+  border-radius: 50%; /* Round shape */
+  background-color: white; /* White color */
+  pointer-events: none;  /* Ensure it doesn't interfere with clicks */
+  transform: translate(-50%, -50%); /* Center it on mouse pointer */
+  transition: all 0.15s ease; /* Smooth transition */
+  z-index: 10000; /* Inner cursor is above the outer one */
+}
+
+/* Hover effects for the cursor */
+.cursor-hover {
+  width: 40px; /* Enlarged size for the outer cursor */
+  height: 40px; /* Enlarged size */
+  background-color: #FF881B; /* Change to primary color (optional) */
+}
+
+.cursor-hover-inner {
+  width: 15px; /* Enlarged size for the inner cursor */
+  height: 15px; /* Enlarged size */
+}
