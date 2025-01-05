@@ -1,5 +1,6 @@
 // import CustomCursor from "@/components/CustomCursor";
 import About from "@/components/About";
+import FAQ from "@/components/FAQ";
 import Header from "@/components/header";
 import Reservation from "@/components/reservation";
 import Sponsors from "@/components/Sponsors";
@@ -14,6 +15,7 @@ export default function Home() {
      <Sponsors />   
      <About />
      <SliderTestimonials/>
+     <FAQ />
     </div>
   );
 }
