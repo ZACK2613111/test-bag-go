@@ -135,7 +135,7 @@ const Header = () => {
           </div>
 
           <Link href="/auth/signup">
-            <button type="button" className="font-medium hover:text-primary">
+            <button type="button" className="hover:text-primary">
               {selectedFlag === flags.england ? "Sign Up" : "S'inscrire"}
             </button>
           </Link>

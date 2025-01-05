@@ -7,12 +7,12 @@ const About: React.FC = () => {
     <div className="flex flex-col lg:flex-row justify-between items-center space-y-6 lg:space-y-0 lg:space-x-6 py-8">
       {/* Image Section */}
       <div className="relative flex justify-end items-center w-full lg:w-[50%] h-[500px] bg-primary rounded-r-[10rem] lg:rounded-r-[12rem] p-6">
-        <div className="absolute top-[-3rem] right-[-2rem] z-20">
+        <div className="absolute top-[-5rem] right-[-0.5rem] z-20">
           <Image
             src={FilleImage}
             alt="Fille holding a passport"
-            width={600}
-            height={450}
+            width={750}
+            height={650}
             className="object-cover"
           />
         </div>

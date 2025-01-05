@@ -1,22 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { LanguageProvider } from "../context/LanguageContext"; // Import LanguageProvider
+import { Roboto } from 'next/font/google';
+import { LanguageProvider } from "../context/LanguageContext"; 
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const roboto = Roboto({
   subsets: ["latin"],
+  weight: ["400", "500", "700"], 
 });
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const roboto = {
-  variable: "--font-roboto",
-  subsets: ["latin"],
-};
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,13 +15,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable} antialiased`}
+        className={`${roboto.className} antialiased`}
       >
         <LanguageProvider>
           {children}

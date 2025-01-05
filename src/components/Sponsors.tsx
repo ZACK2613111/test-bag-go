@@ -11,7 +11,7 @@ const sponsorsImages = [
 
 const Sponsors: React.FC = () => {
   return (
-    <div className="px-4 py-8">
+    <div className="px-4 py-8 mb-16">
       <div className="overflow-hidden relative">
         <div className="flex animate-scroll will-change-transform">
           {sponsorsImages.map((sponsor) => (
