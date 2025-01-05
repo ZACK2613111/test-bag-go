@@ -2,7 +2,7 @@
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import { useState, useMemo, useCallback, useEffect } from "react";
-import { useRouter } from "next/navigation"; // Import useRouter from next/navigation
+import { useRouter } from "next/navigation";
 import franceFlag from "../../public/images/flags/france.png";
 import EnglandFlag from "../../public/images/flags/united-kingdom.png";
 
@@ -10,7 +10,7 @@ const Header = () => {
   const [isLanguageMenuOpen, setLanguageMenuOpen] = useState(false);
   const [selectedFlag, setSelectedFlag] = useState<StaticImageData | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const router = useRouter(); // Access the router object
+  const router = useRouter();
 
   const flags = useMemo(
     () => ({
@@ -26,7 +26,7 @@ const Header = () => {
     if (storedLanguage) {
       setSelectedFlag(storedLanguage === "en" ? EnglandFlag : franceFlag);
     } else {
-      setSelectedFlag(franceFlag); // Default to French
+      setSelectedFlag(franceFlag); 
     }
 
     setIsLoaded(true);
@@ -59,6 +59,7 @@ const Header = () => {
             width={120}
             height={40}
             className="object-contain"
+            priority
           />
         </Link>
 
@@ -92,6 +93,7 @@ const Header = () => {
                   width={20}
                   height={14}
                   className="mr-2"
+                  priority
                 />
               )}
             </button>
@@ -110,6 +112,7 @@ const Header = () => {
                     width={20}
                     height={14}
                     className="mr-2"
+                    priority
                   />
                 </button>
                 <button
@@ -124,6 +127,7 @@ const Header = () => {
                     width={20}
                     height={14}
                     className="mr-2"
+                    priority
                   />
                 </button>
               </div>

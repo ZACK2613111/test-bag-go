@@ -17,14 +17,14 @@
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
-  src: url('/public/fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+  src: url('../../public/fonts/Roboto/Roboto-Regular.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 700;
-  src: url('/public/fonts/Roboto/Roboto-Bold.ttf') format('truetype');
+  src: url('../../public/fonts/Roboto/Roboto-Bold.ttf') format('truetype');
 }
 
 body {
