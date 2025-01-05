@@ -74,3 +74,20 @@ body {
   width: 15px; /* Enlarged size for the inner cursor */
   height: 15px; /* Enlarged size */
 }
+
+.bg-primary {
+  background-color: #FF881B;  
+}
+
+.testimonial-item {
+  transition: transform 0.3s ease-in-out;
+}
+
+button {
+  font-size: 1.5rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+  z-index: 10;
+}
