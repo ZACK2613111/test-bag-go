@@ -1,21 +1,17 @@
 "use client";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
-import { useState, useMemo, useCallback} from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
+import { useRouter } from "next/navigation"; // Import useRouter from next/navigation
 import franceFlag from "../../public/images/flags/france.png";
 import EnglandFlag from "../../public/images/flags/united-kingdom.png";
 
 const Header = () => {
-  // Check if there is a saved language in LocalStorage
-  const storedLanguage = typeof window !== "undefined" ? localStorage.getItem("language") : null;
-
-  // Initializing state based on the saved language or default to France
   const [isLanguageMenuOpen, setLanguageMenuOpen] = useState(false);
-  const [selectedFlag, setSelectedFlag] = useState<StaticImageData>(
-    storedLanguage === "en" ? EnglandFlag : franceFlag
-  );
+  const [selectedFlag, setSelectedFlag] = useState<StaticImageData | null>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const router = useRouter(); // Access the router object
 
-  // Memoizing flags to avoid unnecessary re-renders
   const flags = useMemo(
     () => ({
       france: franceFlag,
@@ -24,18 +20,34 @@ const Header = () => {
     []
   );
 
-  // Toggle language dropdown menu
+  useEffect(() => {
+    const storedLanguage = typeof window !== "undefined" ? localStorage.getItem("language") : null;
+
+    if (storedLanguage) {
+      setSelectedFlag(storedLanguage === "en" ? EnglandFlag : franceFlag);
+    } else {
+      setSelectedFlag(franceFlag); // Default to French
+    }
+
+    setIsLoaded(true);
+  }, []);
+
   const toggleLanguageMenu = useCallback(() => {
     setLanguageMenuOpen((prev) => !prev);
   }, []);
 
-  // Change language and persist to LocalStorage
   const changeLanguage = useCallback((flag: StaticImageData, lang: string) => {
     setSelectedFlag(flag);
-    localStorage.setItem("language", lang); // Store the selected language in LocalStorage
-    setLanguageMenuOpen(false); // Close the dropdown after selection
-    alert(`Language changed to ${lang === "en" ? "English" : "Français"}`);
-  }, []);
+    localStorage.setItem("language", lang);
+
+    const currentPath = window.location.pathname;
+    router.push(`/${lang}${currentPath.replace(/^\/(en|fr)/, '')}`);
+    setLanguageMenuOpen(false);
+  }, [router]);
+
+  if (!isLoaded) {
+    return null; // Render nothing while loading
+  }
 
   return (
     <header className="bg-white py-4">
@@ -52,16 +64,16 @@ const Header = () => {
 
         <nav className="hidden md:flex space-x-8">
           <Link href="/" className="font-medium hover:text-primary">
-            Accueil
+            {selectedFlag === flags.england ? "Home" : "Accueil"}
           </Link>
           <Link href="/services" className="font-roboto font-medium hover:text-primary">
-            A propos
+            {selectedFlag === flags.england ? "About" : "A propos"}
           </Link>
           <Link href="/contact" className="font-medium hover:text-primary">
-            Comment ça marche
+            {selectedFlag === flags.england ? "How it works" : "Comment ça marche"}
           </Link>
           <Link href="/contact" className="font-medium hover:text-primary">
-            Contact
+            {selectedFlag === flags.england ? "Contact" : "Contact"}
           </Link>
         </nav>
 
@@ -73,13 +85,15 @@ const Header = () => {
               onClick={toggleLanguageMenu}
               title="Dropdown menu"
             >
-              <Image
-                src={selectedFlag.src}
-                alt="Selected Language"
-                width={20}
-                height={14}
-                className="mr-2"
-              />
+              {selectedFlag && (
+                <Image
+                  src={selectedFlag.src}
+                  alt="Selected Language"
+                  width={20}
+                  height={14}
+                  className="mr-2"
+                />
+              )}
             </button>
 
             {isLanguageMenuOpen && (
@@ -118,13 +132,13 @@ const Header = () => {
 
           <Link href="/auth/signup">
             <button type="button" className="font-medium hover:text-primary">
-              S&apos;inscrire
+              {selectedFlag === flags.england ? "Sign Up" : "S'inscrire"}
             </button>
           </Link>
 
           <Link href="/auth/login">
             <button type="button" className="bg-primary text-white rounded-md px-6 py-2">
-              Se connecter
+              {selectedFlag === flags.england ? "Log In" : "Se connecter"}
             </button>
           </Link>
 
