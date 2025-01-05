@@ -11,6 +11,11 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: "#FF881B",
+        secondary: "#872BFF",
+      },
+      fontFamily: {
+        roboto: ["Roboto", "sans-serif"],
       },
     },
   },
