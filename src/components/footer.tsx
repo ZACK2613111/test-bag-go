@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
             <Image src={Logo} alt="Logo" className="object-contain" />
           </div>
           <p className="text-center lg:text-left">
-            &copy; {new Date().getFullYear()} Guessra. All rights reserved.
+            &copy; {new Date().getFullYear()} Bag&Go. All rights reserved.
           </p>
         </div>
 
@@ -46,17 +46,17 @@ const Footer: React.FC = () => {
           <h3 className="text-lg font-bold mb-4">{translations.about}</h3>
           <ul className="space-y-2">
             <li>
-              <Link href="/about" className="hover:underline">
+              <Link href="/about" className="hover:text-primary">
                 {translations.about}
               </Link>
             </li>
             <li>
-              <Link href="/how-it-works" className="hover:underline">
+              <Link href="/how-it-works" className="hover:text-primary">
                 {translations.how_it_works}
               </Link>
             </li>
             <li>
-              <Link href="/faq" className="hover:underline">
+              <Link href="/faq" className="hover:text-primary">
                 {translations.faq}
               </Link>
             </li>
@@ -67,17 +67,17 @@ const Footer: React.FC = () => {
           <h3 className="text-lg font-bold mb-4">{translations.support}</h3>
           <ul className="space-y-2">
             <li>
-              <Link href="/contact" className="hover:underline">
+              <Link href="/contact" className="hover:text-primary">
                 {translations.contact}
               </Link>
             </li>
             <li>
-              <Link href="/claims" className="hover:underline">
+              <Link href="/claims" className="hover:text-primary">
                 {translations.claims}
               </Link>
             </li>
             <li>
-              <Link href="/help-center" className="hover:underline">
+              <Link href="/help-center" className="hover:text-primary">
                 {translations.help_center}
               </Link>
             </li>
@@ -88,17 +88,17 @@ const Footer: React.FC = () => {
           <h3 className="text-lg font-bold mb-4">{translations.legal_information}</h3>
           <ul className="space-y-2">
             <li>
-              <Link href="/legal-notice" className="hover:underline">
+              <Link href="/legal-notice" className="hover:text-primary">
                 {translations.legal_notice}
               </Link>
             </li>
             <li>
-              <Link href="/privacy-policy" className="hover:underline">
+              <Link href="/privacy-policy" className="hover:text-primary">
                 {translations.privacy_policy}
               </Link>
             </li>
             <li>
-              <Link href="/terms-and-conditions" className="hover:underline">
+              <Link href="/terms-and-conditions" className="hover:text-primary">
                 {translations.terms_and_conditions}
               </Link>
             </li>

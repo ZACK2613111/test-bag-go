@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Roboto } from 'next/font/google';
 import { LanguageProvider } from "../context/LanguageContext"; 
+import Image from "next/image";
+import WorldMap from "../../public/images/WorldMap-.png";
 import "./globals.css";
 
 const roboto = Roboto({
@@ -19,8 +21,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${roboto.className} antialiased`}
+        className={`${roboto.className} antialiased relative w-full h-screen`}
       >
+        <div className="absolute top-0 left-0 w-full h-full z-[-1]">
+          <Image 
+            src={WorldMap} 
+            alt="World Map" 
+            layout="fill" 
+            objectFit="cover" 
+            priority={true} 
+          />
+        </div>
         <LanguageProvider>
           {children}
         </LanguageProvider>

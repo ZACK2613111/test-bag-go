@@ -4,9 +4,13 @@ import Image from "next/image";
 import CalendarIcon from "../../public/images/calendar.png";
 import PlaneDepartureIcon from "../../public/images/plane-departure.png";
 import PlaneArrivalIcon from "../../public/images/plane-arrival.png";
-import { useLanguage } from "../context/LanguageContext"; 
-import translationsEnglish  from "../locales/en/translation.json";
-import  translationsFrench  from "../locales/fr/translation.json";
+import AirCraftPath from "../../public/images/planes/AirCraftBottom.svg";
+import Plane from "../../public/images/planes/planebottom.png";
+
+import { MapPin } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
+import translationsEnglish from "../locales/en/translation.json";
+import translationsFrench from "../locales/fr/translation.json";
 
 type FormData = {
   issueType: string;
@@ -18,7 +22,7 @@ type FormData = {
 };
 
 const FlightIssueForm: React.FC = () => {
-  const { language } = useLanguage(); 
+  const { language } = useLanguage();
   const [translations, setTranslations] = useState(translationsEnglish);
   const [formData, setFormData] = useState<FormData>({
     issueType: "",
@@ -60,7 +64,7 @@ const FlightIssueForm: React.FC = () => {
 
   return (
     <>
-      <div className="p-8 rounded-lg shadow-xl space-y-6 m-12">
+      <div className="relative z-10 p-8 rounded-lg shadow-xl space-y-6 m-12">
         <div className="flex justify-evenly gap-2">
           {Object.entries(issues).map(([id, label]) => (
             <label key={id} className="flex items-center gap-2 group">
@@ -82,7 +86,7 @@ const FlightIssueForm: React.FC = () => {
           <div className="flex-1">
             <div className="flex items-center">
               <Image src={PlaneDepartureIcon} alt="Départ" width={24} height={24} priority />
-              <span className="ml-2">{translations.departure}</span>
+              <span className="ml-2 font-semibold">{translations.departure}</span>
             </div>
             <input
               type="text"
@@ -97,7 +101,7 @@ const FlightIssueForm: React.FC = () => {
           <div className="flex-1">
             <div className="flex items-center">
               <Image src={PlaneArrivalIcon} alt="Arrivée" width={24} height={24} priority />
-              <span className="ml-2">{translations.arrival}</span>
+              <span className="ml-2 font-semibold">{translations.arrival}</span>
             </div>
             <input
               type="text"
@@ -112,7 +116,7 @@ const FlightIssueForm: React.FC = () => {
           <div className="flex-1">
             <div className="flex items-center">
               <Image src={CalendarIcon} alt="Date de départ" width={24} height={24} priority />
-              <span className="ml-2">{translations.date}</span>
+              <span className="ml-2 font-semibold">{translations.date}</span>
             </div>
             <input
               title={translations.date}
@@ -127,7 +131,7 @@ const FlightIssueForm: React.FC = () => {
 
         <div className="flex flex-wrap gap-6 justify-between">
           <div className="flex-1 min-w-[250px]">
-            <label className="text-gray-700 w-full">{translations.airline}</label>
+            <label className="text-gray-700 w-full font-semibold">{translations.airline}</label>
             <input
               type="text"
               name="airline"
@@ -138,8 +142,8 @@ const FlightIssueForm: React.FC = () => {
             />
           </div>
 
-          <div className="flex-1 min-w-[250px]">
-            <label className="text-gray-700 w-full">{translations.flightType}</label>
+          <div className="flex-1">
+            <label className="text-gray-700 font-semibold">{translations.flightType}</label>
             <select
               aria-label="label for the select"
               name="flightType"
@@ -152,17 +156,41 @@ const FlightIssueForm: React.FC = () => {
             </select>
           </div>
         </div>
-
-        <div className="text-center mt-4">
-        </div>
       </div>
+
+      {/* Bottom Section */}
+      <div className="relative flex justify-evenly items-center w-full px-16 mb-20">
+        <div className="flex justify-center items-center w-1/3">
+          <div className="bg-primary p-4 rounded-full animate-bounce">
+            <MapPin className="w-8 h-8 text-white" />
+          </div>
+        </div>
+        <div className="flex justify-center items-center w-1/3">
           <button
             type="button"
             onClick={handleSubmit}
-            className="px-16 py-3 text-white rounded-lg bg-primary text-base"
+            className="px-20 py-4 text-white rounded-lg text-lg bg-primary hover:bg-primary"
           >
             {translations.reportIssue}
           </button>
+        </div>
+        <div className="flex justify-center items-center w-1/3 relative">
+          <Image
+            src={AirCraftPath}
+            alt="Aircraft Path"
+            className="absolute -bottom-10"
+            width={250}
+            height={100}
+          />
+          <Image
+            src={Plane}
+            alt="Plane"
+            className="absolute bottom-0 left-14 z-20"
+            width={40}
+            height={40}
+          />
+        </div>
+      </div>
     </>
   );
 };
