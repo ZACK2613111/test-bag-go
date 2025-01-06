@@ -4,8 +4,12 @@ import testimonials from "@/data/testimonials";
 import React, { useState, useRef } from "react";
 import TestimonialItem from "./TestimonialComponent";
 import { motion } from "framer-motion";
+import { useLanguage } from "../../context/LanguageContext"; // Import the useLanguage hook
+import translationsEnglish from "../../locales/en/translation.json";
+import translationsFrench from "../../locales/fr/translation.json";
 
 const Testimonials: React.FC = () => {
+  const { language } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -15,13 +19,11 @@ const Testimonials: React.FC = () => {
       const scrollLeft = container.scrollLeft;
       const deltaX = event.deltaY;
 
-      // Smooth horizontal scroll
       container.scrollTo({
         left: scrollLeft + deltaX,
         behavior: "smooth",
       });
 
-      // Update the current index
       const newIndex = Math.round(
         (scrollLeft + deltaX) / (container.offsetWidth * 0.6)
       );
@@ -29,14 +31,17 @@ const Testimonials: React.FC = () => {
     }
   };
 
+  // Set the appropriate translation file based on the current language
+  const translations = language === "fr" ? translationsFrench : translationsEnglish;
+
   return (
     <section className="bg-[#FCF6E4] py-12">
       <div className="text-center mb-6">
         <p className="text-xl font-roboto font-bold text-secondary my-2">
-          Témoignages
+          {translations.testimonials.subtitle}
         </p>
-        <h2 className="text-2xl lg:text-4xl font-roboto font-bold">
-          Ce qu’ils disent sur nous
+        <h2 className="text-5xl lg:text-4xl font-roboto font-bold">
+          {translations.testimonials.title}
         </h2>
       </div>
 

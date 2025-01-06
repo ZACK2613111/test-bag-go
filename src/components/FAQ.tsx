@@ -1,13 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLanguage } from "../context/LanguageContext";
+import translationsEnglish from "../locales/en/translation.json";
+import translationsFrench from "../locales/fr/translation.json";
 
 interface FAQItem {
   question: string;
   answer: string;
 }
 
-const faqs: FAQItem[] = [
+const faqsFr: FAQItem[] = [
   {
     question: "Comment signaler un vol retardé ou annulé ?",
     answer:
@@ -30,8 +33,44 @@ const faqs: FAQItem[] = [
   },
 ];
 
+const faqsEn: FAQItem[] = [
+  {
+    question: "How to report a delayed or canceled flight?",
+    answer:
+      "To report a delayed or canceled flight, log in to your account on our platform and go to the 'Report an Issue' section. Fill out the form with the details of your flight, such as flight number, date, and airline, as well as the nature of the issue. Once the request is submitted, you will receive regular updates on its progress.",
+  },
+  {
+    question: "Is this service available for all international flights?",
+    answer:
+      "Yes, this service is available for all international flights operated by partner airlines. You can report incidents by following the same process for all international flights.",
+  },
+  {
+    question: "Can I track the status of my request?",
+    answer:
+      "Yes, you can track the status of your request directly in your customer portal. Notifications will be sent to inform you about the status of your request.",
+  },
+  {
+    question: "How can I get compensation for a travel incident?",
+    answer:
+      "To get compensation, please submit a claim via our platform. Our team will review the provided information and make a decision based on the applicable policies.",
+  },
+];
+
 const FAQ: React.FC = () => {
+  const { language } = useLanguage();
+  const [translations, setTranslations] = useState(translationsEnglish);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (language === "fr") {
+      setTranslations(translationsFrench);
+    } else {
+      setTranslations(translationsEnglish);
+    }
+  }, [language]);
+
+  const faqs = language === "fr" ? faqsFr : faqsEn;
+  const title = language === "fr" ? translations.faqTitle : translations.faqTitle;
 
   const handleToggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -40,7 +79,7 @@ const FAQ: React.FC = () => {
   return (
     <section className="bg-[#FCF6E4] py-12 font-roboto">
       <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-8 text-primary">Questions Fréquemment Posées (FAQs)</h2>
+        <h2 className="text-4xl font-bold mb-8 text-primary">{title}</h2>
         <div className="space-y-6">
           {faqs.map((faq, index) => (
             <div
@@ -76,7 +115,9 @@ const FAQ: React.FC = () => {
                 </span>
               </div>
               {openIndex === index && (
-                <p className="text-sm font-light text-left text-gray-700">{faq.answer}</p>
+                <p className="text-sm font-light text-left text-gray-700">
+                  {faq.answer}
+                </p>
               )}
             </div>
           ))}

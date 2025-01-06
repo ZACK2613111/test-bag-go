@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import { createContext, useState, useContext, ReactNode } from "react";
 import { StaticImageData } from "next/image";
 import franceFlag from "../../public/images/flags/france.png";
@@ -16,9 +16,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const storedLanguage = typeof window !== "undefined" ? localStorage.getItem("language") : "fr";
   
   const [language, setLanguage] = useState(storedLanguage || "fr");
-  const [selectedFlag, setSelectedFlag] = useState<StaticImageData>(
-    language === "en" ? EnglandFlag : franceFlag
-  );
+  const [selectedFlag, setSelectedFlag] = useState<StaticImageData>(language === "en" ? EnglandFlag : franceFlag);
 
   const changeLanguage = (lang: string) => {
     setLanguage(lang);
