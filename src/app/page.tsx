@@ -7,6 +7,7 @@ import MapComponent from "@/components/Map";
 import Reservation from "@/components/reservation";
 import Sponsors from "@/components/Sponsors";
 import SliderTestimonials from "@/components/Testimonials";
+import WorksComponent from "@/components/Works";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
      <Reservation/> 
      <Sponsors />   
      <About />
+     <WorksComponent />
      <SliderTestimonials/>
      <MapComponent/>
      <FAQ />
